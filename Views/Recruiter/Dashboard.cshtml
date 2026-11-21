@@ -1,0 +1,172 @@
+@{
+    ViewData["Title"] = "Recruiter Hub & Applicant Manager - SmartHire AI";
+    var postedJobs = ViewBag.PostedJobs as List<SmartHire.ViewModels.JobItemViewModel> ?? new();
+}
+
+<div class="bg-dark text-white py-4 border-bottom border-secondary border-opacity-25" style="background: #0b1329 !important;">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <span class="badge neon-badge-success mb-1"><i class="bi bi-patch-check-fill me-1"></i>Verified Recruiter</span>
+                <h1 class="h3 fw-bold text-white mb-0">CloudTech Systems &bull; Talent Acquisition</h1>
+                <p class="text-secondary small mb-0">Campus Recruitment Season 2026-27 &bull; Active Drives: 2</p>
+            </div>
+            <div class="d-flex gap-2">
+                <a asp-controller="Jobs" asp-action="Index" class="btn btn-outline-light btn-sm px-3 py-2 fw-semibold">
+                    <i class="bi bi-eye me-1"></i>View Live Listings
+                </a>
+                <button class="btn cyber-btn-primary btn-sm px-3 py-2 fw-semibold" onclick="alert('Post New Job Form Modal will open here in Phase 6!')">
+                    <i class="bi bi-plus-circle me-1"></i>Post New Job
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <!-- Stat Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-xl-3 col-sm-6">
+            <div class="cyber-card p-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small fw-semibold text-uppercase">Total Applicants</span>
+                        <h3 class="fw-bold text-dark mt-1 mb-0">28</h3>
+                    </div>
+                    <span class="rounded-circle bg-primary bg-opacity-10 text-primary p-3">
+                        <i class="bi bi-people-fill fs-4"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="cyber-card p-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small fw-semibold text-uppercase">Candidates Shortlisted</span>
+                        <h3 class="fw-bold text-info mt-1 mb-0">7</h3>
+                    </div>
+                    <span class="rounded-circle bg-info bg-opacity-10 text-info p-3">
+                        <i class="bi bi-star-fill fs-4"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="cyber-card p-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small fw-semibold text-uppercase">Interviews Scheduled</span>
+                        <h3 class="fw-bold text-success mt-1 mb-0">5</h3>
+                    </div>
+                    <span class="rounded-circle bg-success bg-opacity-10 text-success p-3">
+                        <i class="bi bi-calendar2-check-fill fs-4"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="cyber-card p-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small fw-semibold text-uppercase">Offers Extended</span>
+                        <h3 class="fw-bold text-warning mt-1 mb-0">2</h3>
+                    </div>
+                    <span class="rounded-circle bg-warning bg-opacity-10 text-warning p-3">
+                        <i class="bi bi-award-fill fs-4"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Applicants Management Table -->
+    <div class="cyber-card p-4 shadow-sm mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h5 class="fw-bold text-dark mb-0"><i class="bi bi-person-lines-fill text-primary me-2"></i>Campus Drive Candidate Queue</h5>
+                <small class="text-muted">Ranked with automated AI Match Scoring</small>
+            </div>
+            <a asp-controller="Reports" asp-action="ExportCsv" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                <i class="bi bi-download me-1"></i>Export to CSV
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light small text-secondary">
+                    <tr>
+                        <th>Candidate Name</th>
+                        <th>College & Dept</th>
+                        <th>CGPA</th>
+                        <th>AI Match Score</th>
+                        <th>Current Status</th>
+                        <th class="text-end">Recruiter Action</th>
+                    </tr>
+                </thead>
+                <tbody class="small">
+                    <tr>
+                        <td>
+                            <strong class="text-dark d-block">Raushan Kumar</strong>
+                            <small class="text-muted"><i class="bi bi-file-earmark-pdf text-danger"></i> resume_raushan_v2.pdf</small>
+                        </td>
+                        <td>NIT Tech &bull; CSE (2026)</td>
+                        <td><span class="badge bg-primary bg-opacity-10 text-primary">8.7 CGPA</span></td>
+                        <td><span class="badge bg-success bg-opacity-15 text-success font-monospace fw-bold">94% Fit</span></td>
+                        <td><span class="badge bg-info bg-opacity-15 text-info">Shortlisted</span></td>
+                        <td class="text-end">
+                            <form asp-action="UpdateApplicantStatus" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="candidateName" value="Raushan Kumar" />
+                                <input type="hidden" name="status" value="Interview Scheduled" />
+                                <button type="submit" class="btn btn-xs btn-success rounded-pill px-2.5 py-1">
+                                    <i class="bi bi-calendar-plus me-1"></i>Schedule Interview
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong class="text-dark d-block">Aarav Sharma</strong>
+                            <small class="text-muted"><i class="bi bi-file-earmark-pdf text-danger"></i> resume_aarav.pdf</small>
+                        </td>
+                        <td>IIT Delhi &bull; CSE (2026)</td>
+                        <td><span class="badge bg-primary bg-opacity-10 text-primary">8.9 CGPA</span></td>
+                        <td><span class="badge bg-success bg-opacity-15 text-success font-monospace fw-bold">91% Fit</span></td>
+                        <td><span class="badge bg-warning bg-opacity-15 text-dark">Under Review</span></td>
+                        <td class="text-end">
+                            <form asp-action="UpdateApplicantStatus" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="candidateName" value="Aarav Sharma" />
+                                <input type="hidden" name="status" value="Shortlisted" />
+                                <button type="submit" class="btn btn-xs btn-primary rounded-pill px-2.5 py-1">
+                                    <i class="bi bi-check-lg me-1"></i>Shortlist
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong class="text-dark d-block">Priya Patel</strong>
+                            <small class="text-muted"><i class="bi bi-file-earmark-pdf text-danger"></i> resume_priya.pdf</small>
+                        </td>
+                        <td>BITS Pilani &bull; ECE (2026)</td>
+                        <td><span class="badge bg-primary bg-opacity-10 text-primary">8.4 CGPA</span></td>
+                        <td><span class="badge bg-success bg-opacity-15 text-success font-monospace fw-bold">85% Fit</span></td>
+                        <td><span class="badge bg-warning bg-opacity-15 text-dark">Under Review</span></td>
+                        <td class="text-end">
+                            <form asp-action="UpdateApplicantStatus" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="candidateName" value="Priya Patel" />
+                                <input type="hidden" name="status" value="Shortlisted" />
+                                <button type="submit" class="btn btn-xs btn-primary rounded-pill px-2.5 py-1">
+                                    <i class="bi bi-check-lg me-1"></i>Shortlist
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

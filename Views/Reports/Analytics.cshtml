@@ -1,0 +1,148 @@
+@{
+    ViewData["Title"] = "Campus Placement Analytics & Hiring Reports - SmartHire AI";
+}
+
+<div class="bg-dark text-white py-4 border-bottom border-secondary border-opacity-25" style="background: #090e1a !important;">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <span class="badge neon-badge-ai mb-1">Institutional Placement Intelligence</span>
+                <h1 class="h3 fw-bold text-white mb-0">Placement Drive Analytics & Reports</h1>
+                <p class="text-secondary small mb-0">Aggregate performance metrics, departmental hiring trends, and verified drive statistics.</p>
+            </div>
+            <a asp-action="ExportCsv" class="btn cyber-btn-primary px-3 py-2 fw-semibold">
+                <i class="bi bi-file-earmark-spreadsheet me-2"></i>Export Placement CSV Report
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <!-- Macro Placement Metrics -->
+    <div class="row g-3 mb-4">
+        <div class="col-lg-3 col-6">
+            <div class="cyber-card p-3 shadow-sm text-center">
+                <span class="text-secondary small text-uppercase fw-semibold">Placement Rate</span>
+                <h2 class="display-6 fw-extrabold text-success mt-1 mb-0 font-monospace">92.4%</h2>
+                <small class="text-muted">480 / 520 Registered</small>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="cyber-card p-3 shadow-sm text-center">
+                <span class="text-secondary small text-uppercase fw-semibold">Highest Package</span>
+                <h2 class="display-6 fw-extrabold text-primary mt-1 mb-0 font-monospace">₹ 24.5 LPA</h2>
+                <small class="text-muted">NeuralMatrix AI Labs</small>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="cyber-card p-3 shadow-sm text-center">
+                <span class="text-secondary small text-uppercase fw-semibold">Average Package</span>
+                <h2 class="display-6 fw-extrabold text-info mt-1 mb-0 font-monospace">₹ 7.8 LPA</h2>
+                <small class="text-muted">+14% Growth over 2025</small>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="cyber-card p-3 shadow-sm text-center">
+                <span class="text-secondary small text-uppercase fw-semibold">Active Recruiters</span>
+                <h2 class="display-6 fw-extrabold text-warning mt-1 mb-0 font-monospace">85+</h2>
+                <small class="text-muted">Fortune 500 & Startups</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Department-wise Placement Funnel -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+            <div class="cyber-card p-4 shadow-sm h-100">
+                <h5 class="fw-bold text-dark mb-3"><i class="bi bi-pie-chart-fill text-primary me-2"></i>Department Placement Distribution</h5>
+                
+                <div class="d-flex flex-column gap-3">
+                    <div>
+                        <div class="d-flex justify-content-between small mb-1">
+                            <strong>Computer Science & Engineering (CSE)</strong>
+                            <span class="text-success fw-bold">98.5% Placed (197/200)</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-success" style="width: 98.5%;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-between small mb-1">
+                            <strong>Information Technology (IT)</strong>
+                            <span class="text-primary fw-bold">96.0% Placed (144/150)</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-primary" style="width: 96%;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-between small mb-1">
+                            <strong>Electronics & Communication (ECE)</strong>
+                            <span class="text-info fw-bold">88.0% Placed (88/100)</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-info" style="width: 88%;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-between small mb-1">
+                            <strong>Mechanical & Core Engineering</strong>
+                            <span class="text-warning fw-bold">74.2% Placed (52/70)</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-warning" style="width: 74.2%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="cyber-card p-4 shadow-sm h-100">
+                <h5 class="fw-bold text-dark mb-3"><i class="bi bi-buildings-fill text-success me-2"></i>Top Campus Recruitment Partners</h5>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle small mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Partner</th>
+                                <th>Industry</th>
+                                <th>Offers</th>
+                                <th>Avg CTC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong class="text-dark">CloudTech Systems</strong></td>
+                                <td>Cloud & .NET Enterprise</td>
+                                <td><span class="badge bg-primary">42 Students</span></td>
+                                <td><strong>₹ 8.5 LPA</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong class="text-dark">NextGen Digital Labs</strong></td>
+                                <td>Full-Stack & Web</td>
+                                <td><span class="badge bg-primary">35 Students</span></td>
+                                <td><strong>₹ 9.0 LPA</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong class="text-dark">DataMatrix Solutions</strong></td>
+                                <td>Data & SQL Infrastructure</td>
+                                <td><span class="badge bg-primary">28 Students</span></td>
+                                <td><strong>₹ 6.8 LPA</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong class="text-dark">NeuralMatrix AI</strong></td>
+                                <td>Artificial Intelligence</td>
+                                <td><span class="badge bg-primary">18 Students</span></td>
+                                <td><strong>₹ 14.5 LPA</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

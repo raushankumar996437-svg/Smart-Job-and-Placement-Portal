@@ -1,0 +1,20 @@
+## Visual Studio / .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+## User Secrets & Local Settings
+appsettings.*.local.json
+secrets.json
+
+## Uploads (Resumes stored during local runs)
+wwwroot/uploads/
+uploads/
+
+## Rider / VS Code
+.idea/
+.vscode/

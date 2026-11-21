@@ -1,0 +1,222 @@
+@using Microsoft.AspNetCore.Http
+@{
+    var userRole = Context.Session.GetString("UserRole");
+    var userName = Context.Session.GetString("UserName") ?? "User";
+    var userEmail = Context.Session.GetString("UserEmail");
+    var isLoggedIn = !string.IsNullOrEmpty(userRole);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SmartHire Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Main Smart Navigation -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark shadow-lg py-2 border-bottom border-secondary border-opacity-25" style="background: rgba(11, 15, 25, 0.98) !important; backdrop-filter: blur(12px);">
+            <div class="container-fluid px-lg-4">
+                <!-- Brand -->
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="rounded-3 bg-gradient p-2 text-white d-inline-flex" style="background: linear-gradient(135deg, #06b6d4, #3b82f6, #7c3aed);">
+                        <i class="bi bi-cpu-fill fs-5"></i>
+                    </span>
+                    <span class="fs-4 tracking-tight text-white font-monospace fw-bold">Smart<span class="text-info">Hire</span></span>
+                </a>
+                
+                <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-xl-0 ms-xl-4 gap-1">
+                        <!-- Home is ALWAYS visible -->
+                        <li class="nav-item">
+                            <a class="nav-link text-light px-3" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door me-1 text-primary"></i>Home
+                            </a>
+                        </li>
+
+                        @if (!isLoggedIn)
+                        {
+                            <!-- Public / Guest Navigation: ONLY public information visible before login -->
+                            <li class="nav-item">
+                                <a class="nav-link text-light px-3" asp-area="" asp-controller="Home" asp-action="About">
+                                    <i class="bi bi-info-circle me-1 text-info"></i>About Us
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light px-3" asp-area="" asp-controller="Home" asp-action="Contact">
+                                    <i class="bi bi-envelope me-1 text-warning"></i>Contact Helpdesk
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light px-3" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                    <i class="bi bi-shield-check me-1 text-success"></i>Privacy Policy
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- Authenticated Tabs: Revealed ONLY after Login/Register -->
+                            @if (userRole == "Student")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light px-3" asp-area="" asp-controller="Jobs" asp-action="Index">
+                                        <i class="bi bi-briefcase me-1 text-info"></i>Browse Jobs
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white fw-bold px-3 d-flex align-items-center gap-1" asp-area="" asp-controller="Ai" asp-action="Assistant" style="background: rgba(124, 58, 237, 0.25); border-radius: 50rem; border: 1px solid rgba(124, 58, 237, 0.5);">
+                                        <i class="bi bi-robot text-warning"></i> AI Career Copilot
+                                        <span class="badge bg-warning text-dark font-monospace" style="font-size: 0.65rem;">ATS</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light px-3" asp-area="" asp-controller="Student" asp-action="Dashboard">
+                                        <i class="bi bi-mortarboard me-1 text-success"></i>My Placement Dashboard
+                                    </a>
+                                </li>
+                            }
+                            else if (userRole == "Recruiter")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light px-3" asp-area="" asp-controller="Jobs" asp-action="Index">
+                                        <i class="bi bi-briefcase me-1 text-info"></i>All Openings
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light px-3" asp-area="" asp-controller="Recruiter" asp-action="Dashboard">
+                                        <i class="bi bi-buildings me-1 text-warning"></i>Recruiter Workspace
+                                    </a>
+                                </li>
+                            }
+                            else if (userRole == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-warning fw-bold px-3" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                                        <i class="bi bi-shield-check me-1"></i>Admin Console
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light px-3" asp-area="" asp-controller="Reports" asp-action="Analytics">
+                                        <i class="bi bi-graph-up-arrow me-1 text-info"></i>Placement Analytics
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    
+                    <!-- Right-Side Auth Actions -->
+                    <div class="d-flex align-items-center gap-2 mt-2 mt-xl-0">
+                        @if (!isLoggedIn)
+                        {
+                            <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-outline-light px-3 py-1.5 fw-semibold rounded-pill">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                            </a>
+                            <div class="dropdown">
+                                <button class="btn cyber-btn-primary px-3 py-1.5 dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-plus-fill me-1"></i>Register
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2 p-2 rounded-3 bg-white">
+                                    <li>
+                                        <a class="dropdown-item py-2" asp-area="" asp-controller="Account" asp-action="RegisterStudent">
+                                            <i class="bi bi-mortarboard-fill text-primary me-2"></i>As Student
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item py-2" asp-area="" asp-controller="Account" asp-action="RegisterRecruiter">
+                                            <i class="bi bi-building-fill text-success me-2"></i>As Recruiter / Company
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item py-2 text-danger" asp-area="Admin" asp-controller="Account" asp-action="Login">
+                                            <i class="bi bi-shield-lock-fill text-danger me-2"></i>Admin Console Login
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center gap-2 bg-dark bg-opacity-75 border border-secondary border-opacity-50 p-1 px-3 rounded-pill text-white small">
+                                <span class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center fw-bold" style="width: 26px; height: 26px; font-size: 0.75rem;">
+                                    @userName.Substring(0, 1).ToUpper()
+                                </span>
+                                <div>
+                                    <span class="fw-semibold">@userName</span>
+                                    <span class="badge bg-secondary ms-1">@userRole</span>
+                                </div>
+                            </div>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3 py-1">
+                                    <i class="bi bi-power me-1"></i>Sign Out
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Global Flash Alerts -->
+    <div class="container mt-3">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm border-0 d-flex align-items-center gap-2" role="alert">
+                <i class="bi bi-check-circle-fill fs-5"></i>
+                <div>@TempData["SuccessMessage"]</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        @if (TempData["InfoMessage"] != null)
+        {
+            <div class="alert alert-info alert-dismissible fade show rounded-4 shadow-sm border-0 d-flex align-items-center gap-2" role="alert">
+                <i class="bi bi-info-circle-fill fs-5"></i>
+                <div>@TempData["InfoMessage"]</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+    </div>
+
+    <!-- Main Content -->
+    <main role="main" class="flex-grow-1">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light pt-4 pb-3 mt-auto border-top border-secondary border-opacity-25" style="background: #090d16 !important;">
+        <div class="container">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <span class="fs-5 fw-bold text-white font-monospace">Smart<span class="text-info">Hire</span></span>
+                    <p class="small text-secondary mb-0">College Placement & Smart Recruitment Portal &bull; SQL Server Connected</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a asp-area="Admin" asp-controller="Account" asp-action="Login" class="text-secondary small text-decoration-none me-3">
+                        <i class="bi bi-shield-lock me-1"></i>Admin Portal
+                    </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-secondary small text-decoration-none">
+                        Privacy Policy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

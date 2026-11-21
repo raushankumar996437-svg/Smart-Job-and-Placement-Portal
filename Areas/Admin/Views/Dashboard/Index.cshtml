@@ -1,0 +1,134 @@
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Admin Placement Console";
+    var companies = ViewBag.CompaniesList as List<SmartHire.Models.Company> ?? new();
+    var jobs = ViewBag.JobsList as List<SmartHire.Models.Job> ?? new();
+}
+
+<div class="row g-3 mb-4">
+    <div class="col-xl-3 col-sm-6">
+        <div class="cyber-card p-3 shadow-sm border-start border-primary border-4">
+            <span class="text-secondary small fw-bold text-uppercase">Total Students (DB)</span>
+            <h3 class="fw-bold text-dark mt-1 mb-0">@ViewBag.TotalStudents</h3>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="cyber-card p-3 shadow-sm border-start border-success border-4">
+            <span class="text-secondary small fw-bold text-uppercase">Corporate Partners (DB)</span>
+            <h3 class="fw-bold text-success mt-1 mb-0">@ViewBag.TotalCompanies</h3>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="cyber-card p-3 shadow-sm border-start border-info border-4">
+            <span class="text-secondary small fw-bold text-uppercase">Active Job Openings (DB)</span>
+            <h3 class="fw-bold text-info mt-1 mb-0">@ViewBag.TotalJobs</h3>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="cyber-card p-3 shadow-sm border-start border-warning border-4">
+            <span class="text-secondary small fw-bold text-uppercase">Applications Submitted (DB)</span>
+            <h3 class="fw-bold text-warning mt-1 mb-0">@ViewBag.TotalApplications</h3>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Company Verification & Approvals -->
+    <div class="col-lg-6">
+        <div class="cyber-card p-4 shadow-sm h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-dark mb-0"><i class="bi bi-patch-check text-success me-2"></i>Company Verification Moderation</h5>
+                <span class="badge bg-secondary">Live SQL Server Table</span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle small mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Industry</th>
+                            <th>Status</th>
+                            <th class="text-end">Admin Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in companies)
+                        {
+                            <tr>
+                                <td>
+                                    <strong class="text-dark d-block">@c.CompanyName</strong>
+                                    <small class="text-muted">@c.OfficialEmail</small>
+                                </td>
+                                <td>@c.Industry</td>
+                                <td>
+                                    @if (c.ApprovalStatus == "Approved")
+                                    {
+                                        <span class="badge bg-success bg-opacity-15 text-success">Approved</span>
+                                    }
+                                    else if (c.ApprovalStatus == "Pending")
+                                    {
+                                        <span class="badge bg-warning bg-opacity-15 text-dark">Pending</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger bg-opacity-15 text-danger">Rejected</span>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <form asp-action="ToggleCompanyStatus" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="companyId" value="@c.Id" />
+                                        @if (c.ApprovalStatus == "Approved")
+                                        {
+                                            <input type="hidden" name="status" value="Pending" />
+                                            <button type="submit" class="btn btn-xs btn-outline-warning py-1 px-2 rounded">Suspend</button>
+                                        }
+                                        else
+                                        {
+                                            <input type="hidden" name="status" value="Approved" />
+                                            <button type="submit" class="btn btn-xs btn-success py-1 px-2 rounded">Approve</button>
+                                        }
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Jobs Moderation -->
+    <div class="col-lg-6">
+        <div class="cyber-card p-4 shadow-sm h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-dark mb-0"><i class="bi bi-briefcase text-primary me-2"></i>Job Listings Moderation</h5>
+                <span class="badge bg-secondary">Live SQL Server Table</span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle small mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Min CGPA</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var j in jobs)
+                        {
+                            <tr>
+                                <td><strong class="text-dark">@j.Title</strong></td>
+                                <td>@(j.Company?.CompanyName ?? "Partner")</td>
+                                <td><span class="badge bg-primary bg-opacity-10 text-primary">@j.MinimumCGPA</span></td>
+                                <td><span class="badge bg-success">Published</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

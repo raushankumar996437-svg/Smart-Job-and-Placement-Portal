@@ -1,0 +1,60 @@
+@model SmartHire.Models.Company
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Add New Company";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="cyber-card p-4 p-md-5 shadow-sm">
+            <h4 class="fw-bold text-dark mb-1"><i class="bi bi-building-add text-success me-2"></i>Add Corporate Recruitment Partner</h4>
+            <p class="text-secondary small mb-4">Register an approved company into the SmartHire placement database</p>
+
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="CompanyName" class="form-label small fw-semibold text-secondary">Company Name</label>
+                    <input asp-for="CompanyName" class="form-control" placeholder="e.g. Google India / Microsoft" />
+                    <span asp-validation-for="CompanyName" class="text-danger small"></span>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="OfficialEmail" class="form-label small fw-semibold text-secondary">Official Email</label>
+                        <input asp-for="OfficialEmail" class="form-control" placeholder="placements@company.com" />
+                        <span asp-validation-for="OfficialEmail" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Website" class="form-label small fw-semibold text-secondary">Website URL</label>
+                        <input asp-for="Website" class="form-control" placeholder="https://www.company.com" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Industry" class="form-label small fw-semibold text-secondary">Industry Sector</label>
+                    <select asp-for="Industry" class="form-select">
+                        <option value="Information Technology">Information Technology / Software</option>
+                        <option value="Cloud Computing & DevOps">Cloud Computing & DevOps</option>
+                        <option value="Fintech & Banking">Fintech & Banking</option>
+                        <option value="Consulting & Data Analytics">Consulting & Data Analytics</option>
+                        <option value="Core Engineering & Electronics">Core Engineering & Electronics</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Description" class="form-label small fw-semibold text-secondary">Company Overview</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" placeholder="Brief summary of company culture and domain..."></textarea>
+                </div>
+
+                <div class="d-flex justify-content-between pt-3 border-top">
+                    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Cancel</a>
+                    <button type="submit" class="btn btn-success rounded-pill px-4 fw-bold">
+                        <i class="bi bi-check-lg me-1"></i>Save & Approve Company
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

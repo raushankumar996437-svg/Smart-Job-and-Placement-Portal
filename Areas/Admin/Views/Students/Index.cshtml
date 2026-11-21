@@ -1,0 +1,84 @@
+@model List<SmartHire.Models.StudentProfile>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Students Directory & Records";
+    var appCounts = ViewBag.AppCounts as Dictionary<string, int> ?? new();
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-0"><i class="bi bi-mortarboard-fill text-primary me-2"></i>Students Placement Directory</h3>
+        <p class="text-secondary small mb-0">Track all registered students, graduation batches, CGPA metrics, and drive application volumes</p>
+    </div>
+    <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill font-monospace">@Model.Count Enrolled Students</span>
+</div>
+
+<div class="cyber-card p-4 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light small">
+                <tr>
+                    <th>Student Name & Email</th>
+                    <th>College & Department</th>
+                    <th>Batch</th>
+                    <th>CGPA</th>
+                    <th>Applications Sent</th>
+                    <th>Resume</th>
+                    <th class="text-end">Admin Action</th>
+                </tr>
+            </thead>
+            <tbody class="small">
+                @foreach (var s in Model)
+                {
+                    var count = appCounts.ContainsKey(s.UserId) ? appCounts[s.UserId] : 0;
+                    <tr>
+                        <td>
+                            <strong class="text-dark d-block">@(s.User?.FullName ?? "Student")</strong>
+                            <small class="text-muted">@(s.User?.Email ?? "N/A")</small>
+                        </td>
+                        <td>
+                            <span class="d-block text-dark">@s.CollegeName</span>
+                            <small class="text-secondary">@s.Department</small>
+                        </td>
+                        <td><span class="badge bg-light text-dark border">@s.GraduationYear</span></td>
+                        <td>
+                            <span class="badge bg-success bg-opacity-15 text-success font-monospace fw-bold">
+                                @s.CGPA CGPA
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-primary bg-opacity-15 text-primary font-monospace px-2.5 py-1">
+                                @count Applications
+                            </span>
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(s.ResumePath))
+                            {
+                                <span class="badge bg-light text-danger border"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted small">Pending</span>
+                            }
+                        </td>
+                        <td class="text-end">
+                            <div class="d-inline-flex gap-1">
+                                <a asp-action="Details" asp-route-id="@s.Id" class="btn btn-xs btn-outline-primary py-1 px-2.5 rounded">
+                                    <i class="bi bi-eye me-1"></i>Full Dossier
+                                </a>
+
+                                <form asp-action="Delete" method="post" class="d-inline" onsubmit="return confirm('Delete this student profile record permanently?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@s.Id" />
+                                    <button type="submit" class="btn btn-xs btn-outline-danger py-1 px-2 rounded">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

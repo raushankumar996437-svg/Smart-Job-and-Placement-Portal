@@ -1,0 +1,223 @@
+@{
+    ViewData["Title"] = "SmartHire AI - Next-Gen 3D Intelligent Placement & Recruitment Portal";
+}
+
+<!-- Futuristic 3D Hero Section -->
+<section class="bg-ai-gradient text-white py-5 position-relative overflow-hidden">
+    <div class="container py-lg-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-white bg-opacity-10 border border-white border-opacity-25 mb-3">
+                    <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
+                    <span class="text-white small fw-bold tracking-wider font-monospace">NEXT-GEN AI PLACEMENT ECOSYSTEM</span>
+                </div>
+                <h1 class="display-3 fw-extrabold mb-3 tracking-tight leading-tight">
+                    Smart Hiring. <span class="text-info">AI-Matched.</span> Endless Possibilities.
+                </h1>
+                <p class="lead text-light opacity-90 mb-4 fw-normal leading-relaxed">
+                    Bridging university placement cells, ambitious graduating students, and global recruiters on a unified AI-powered portal. Instant ATS resume scoring, rule-based skill verification, and real-time interview pipeline tracking.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                    <a asp-controller="Ai" asp-action="Assistant" class="btn cyber-btn-ai btn-lg px-4 py-2.5 fw-bold shadow-lg">
+                        <i class="bi bi-robot me-2"></i>Launch AI Career Copilot
+                    </a>
+                    <a asp-controller="Jobs" asp-action="Index" class="btn cyber-btn-outline btn-lg px-4 py-2.5 fw-bold">
+                        <i class="bi bi-briefcase me-2"></i>Explore Verified Jobs
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 3D Perspective Card -->
+            <div class="col-lg-5 perspective-container">
+                <div class="cyber-card hero-3d-card p-4 p-md-5 text-dark bg-white shadow-2xl">
+                    <div class="d-flex align-items-center justify-content-between pb-3 border-bottom mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="rounded-circle bg-primary bg-opacity-10 text-primary p-2">
+                                <i class="bi bi-cpu-fill fs-4"></i>
+                            </span>
+                            <div>
+                                <h5 class="fw-bold mb-0">AI Match Engine</h5>
+                                <small class="text-muted">Real-time candidate evaluation</small>
+                            </div>
+                        </div>
+                        <span class="badge bg-success bg-opacity-15 text-success font-monospace px-2.5 py-1">Active</span>
+                    </div>
+
+                    <div class="d-flex flex-column gap-3 mb-4">
+                        <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light border">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-shield-check text-primary fs-5"></i>
+                                <span class="small fw-semibold">Admin-Verified Recruiter Drives</span>
+                            </div>
+                            <span class="badge bg-primary text-white">85+ Live</span>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light border">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-stars text-warning fs-5"></i>
+                                <span class="small fw-semibold">ATS Resume Match Index</span>
+                            </div>
+                            <span class="badge bg-warning text-dark font-monospace">94% Accuracy</span>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light border">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-camera-video text-success fs-5"></i>
+                                <span class="small fw-semibold">Live Interview Scheduling</span>
+                            </div>
+                            <span class="badge bg-success text-white">Real-Time</span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Account" asp-action="RegisterStudent" class="btn cyber-btn-primary py-2 fw-semibold">
+                            <i class="bi bi-mortarboard me-2"></i>Register as Student
+                        </a>
+                        <a asp-controller="Account" asp-action="RegisterRecruiter" class="btn btn-outline-success py-2 fw-semibold rounded-pill">
+                            <i class="bi bi-buildings me-2"></i>Register as Recruiter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Futuristic Statistics Strip -->
+<section class="py-4 bg-white border-bottom shadow-sm">
+    <div class="container">
+        <div class="row g-4 text-center divide-x divide-slate-100">
+            <div class="col-md-3 col-6">
+                <div class="p-2">
+                    <div class="fs-2 fw-extrabold text-primary font-monospace mb-0">1,250+</div>
+                    <small class="text-secondary fw-semibold">Registered Students</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-2">
+                    <div class="fs-2 fw-extrabold text-success font-monospace mb-0">85+</div>
+                    <small class="text-secondary fw-semibold">Corporate Partners</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-2">
+                    <div class="fs-2 fw-extrabold text-info font-monospace mb-0">92.4%</div>
+                    <small class="text-secondary fw-semibold">Campus Placement Rate</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-2">
+                    <div class="fs-2 fw-extrabold text-warning font-monospace mb-0">₹ 24.5 LPA</div>
+                    <small class="text-secondary fw-semibold">Highest CTC Secured</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Features Spotlight Section -->
+<section class="py-5 bg-light">
+    <div class="container py-lg-4">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <span class="badge neon-badge-ai mb-2">Powered by SmartHire Intelligence</span>
+                <h2 class="display-6 fw-bold text-dark">Engineered For Zero Friction Hiring</h2>
+                <p class="text-secondary">Explore the integrated suite of smart tools built specifically for university placements.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="cyber-card p-4 h-100">
+                    <div class="rounded-3 bg-primary bg-opacity-10 text-primary p-3 d-inline-flex mb-3">
+                        <i class="bi bi-robot fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-2">AI ATS Resume Scorer</h5>
+                    <p class="text-secondary small leading-relaxed mb-4">
+                        Evaluates student resumes against verified job descriptions, computing keyword saturation, ATS formatting compatibility, and missing skills.
+                    </p>
+                    <a asp-controller="Ai" asp-action="Assistant" class="text-primary fw-bold text-decoration-none small">
+                        Test ATS Scorer &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="cyber-card p-4 h-100">
+                    <div class="rounded-3 bg-success bg-opacity-10 text-success p-3 d-inline-flex mb-3">
+                        <i class="bi bi-shield-check fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-2">Strict Eligibility Validation</h5>
+                    <p class="text-secondary small leading-relaxed mb-4">
+                        Enforces minimum CGPA, eligible graduation years, department constraints, and database duplicate application prevention automatically.
+                    </p>
+                    <a asp-controller="Jobs" asp-action="Index" class="text-success fw-bold text-decoration-none small">
+                        View Eligible Jobs &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="cyber-card p-4 h-100">
+                    <div class="rounded-3 bg-info bg-opacity-10 text-info p-3 d-inline-flex mb-3">
+                        <i class="bi bi-graph-up fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-2">Placement Analytics & CSV</h5>
+                    <p class="text-secondary small leading-relaxed mb-4">
+                        Live departmental placement ratios, salary packages, recruiter leaderboards, and instant CSV export reports for institutional compliance.
+                    </p>
+                    <a asp-controller="Reports" asp-action="Analytics" class="text-info fw-bold text-decoration-none small">
+                        Explore Analytics &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dual Role Onboarding -->
+<section class="py-5 bg-white">
+    <div class="container py-lg-4">
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-6">
+                <div class="cyber-card p-4 p-md-5 h-100 bg-light border-start border-primary border-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 text-primary">
+                        <i class="bi bi-mortarboard-fill fs-2"></i>
+                        <h4 class="fw-bold mb-0">For Graduating Students</h4>
+                    </div>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Maintain a centralized academic profile, upload your resume once, apply to verified company drives with a single click, and track your application status in real-time.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <a asp-controller="Account" asp-action="RegisterStudent" class="btn cyber-btn-primary px-4 py-2">
+                            Register as Student
+                        </a>
+                        <a asp-controller="Student" asp-action="Dashboard" class="btn btn-outline-secondary px-3 py-2 rounded-pill">
+                            Demo Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="cyber-card p-4 p-md-5 h-100 bg-light border-start border-success border-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 text-success">
+                        <i class="bi bi-building-fill fs-2"></i>
+                        <h4 class="fw-bold mb-0">For Corporate Recruiters</h4>
+                    </div>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Post verified job openings with custom eligibility criteria, filter candidates by CGPA and AI match scores, review authentic resumes, and schedule interviews.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <a asp-controller="Account" asp-action="RegisterRecruiter" class="btn btn-success px-4 py-2 rounded-pill fw-semibold">
+                            Register Company
+                        </a>
+                        <a asp-controller="Recruiter" asp-action="Dashboard" class="btn btn-outline-secondary px-3 py-2 rounded-pill">
+                            Recruiter Workspace
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,124 @@
+@model SmartHire.ViewModels.StudentRegisterViewModel
+@{
+    ViewData["Title"] = "Student Registration - SmartHire AI";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="cyber-card p-4 p-md-5 shadow-lg">
+                <div class="d-flex align-items-center gap-3 mb-4 border-bottom pb-3">
+                    <span class="rounded-circle bg-primary bg-opacity-10 text-primary p-3">
+                        <i class="bi bi-mortarboard-fill fs-2"></i>
+                    </span>
+                    <div>
+                        <h2 class="fw-bold text-dark tracking-tight mb-0">Create Student Profile</h2>
+                        <p class="text-secondary small mb-0">Register with your academic qualifications, CGPA, and technical skills</p>
+                    </div>
+                </div>
+
+                <form asp-action="RegisterStudent" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 py-2 small mb-3"></div>
+
+                    <!-- Personal Information -->
+                    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-person-badge text-primary me-2"></i>Personal & Login Details</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label asp-for="FullName" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="FullName" class="form-control" placeholder="e.g. Raushan Kumar" />
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Email" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="Email" class="form-control" placeholder="raushan@student.college.edu" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Password" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="Password" class="form-control" placeholder="At least 6 characters" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="ConfirmPassword" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="Re-enter password" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Academic Qualifications -->
+                    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-mortarboard text-success me-2"></i>Academic Qualifications</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label asp-for="CollegeName" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="CollegeName" class="form-control" placeholder="e.g. National Institute of Technology" />
+                            <span asp-validation-for="CollegeName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Department" class="form-label small fw-semibold text-secondary"></label>
+                            <select asp-for="Department" class="form-select">
+                                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Electronics & Communication">Electronics & Communication</option>
+                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Data Science & AI">Data Science & AI</option>
+                            </select>
+                            <span asp-validation-for="Department" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="GraduationYear" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="GraduationYear" type="number" class="form-control" />
+                            <span asp-validation-for="GraduationYear" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="CGPA" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="CGPA" type="number" step="0.1" class="form-control" placeholder="e.g. 8.5" />
+                            <span asp-validation-for="CGPA" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Skills & Profiles -->
+                    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-cpu text-info me-2"></i>Skills & Online Profiles</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-12">
+                            <label asp-for="TechnicalSkills" class="form-label small fw-semibold text-secondary"></label>
+                            <input asp-for="TechnicalSkills" class="form-control" placeholder="C#, ASP.NET Core, SQL Server, Entity Framework, JavaScript, HTML5" />
+                            <small class="text-muted">Separate skills with commas. Our AI Copilot will use these to calculate job match scores.</small>
+                            <span asp-validation-for="TechnicalSkills" class="text-danger small d-block"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="LinkedInUrl" class="form-label small fw-semibold text-secondary"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-linkedin text-primary"></i></span>
+                                <input asp-for="LinkedInUrl" class="form-control" placeholder="https://linkedin.com/in/username" />
+                            </div>
+                            <span asp-validation-for="LinkedInUrl" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="GitHubUrl" class="form-label small fw-semibold text-secondary"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-github text-dark"></i></span>
+                                <input asp-for="GitHubUrl" class="form-control" placeholder="https://github.com/username" />
+                            </div>
+                            <span asp-validation-for="GitHubUrl" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                        <a asp-action="Login" class="text-decoration-none text-secondary small">
+                            Already registered? <strong class="text-primary">Sign in</strong>
+                        </a>
+                        <button type="submit" class="btn cyber-btn-primary px-4 py-2.5 fw-bold shadow">
+                            <i class="bi bi-check2-circle me-1"></i>Complete Registration
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

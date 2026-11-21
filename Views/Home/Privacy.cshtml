@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Privacy & Data Protection Policy";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 rounded-pill fw-semibold mb-3 align-self-start">Privacy & Compliance</span>
+                <h1 class="h2 fw-bold text-dark mb-3">SmartHire Privacy Policy</h1>
+                <p class="text-muted small mb-4">Last Updated: November 2026</p>
+
+                <div class="d-flex flex-column gap-4 text-secondary leading-relaxed">
+                    <section>
+                        <h5 class="fw-bold text-dark mb-2">1. Overview</h5>
+                        <p>
+                            SmartHire is dedicated to preserving the integrity, confidentiality, and security of student academic data, verified recruitment credentials, and hiring communications. This policy explains how student and corporate information is stored, processed, and authorized.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h5 class="fw-bold text-dark mb-2">2. Student Data & Resume Privacy</h5>
+                        <p>
+                            Student profiles, including cumulative grade point averages (CGPA), graduation year, technical skills, and uploaded PDF resumes, are strictly confidential. Resume files are stored outside directly executable web paths and are only accessible by:
+                        </p>
+                        <ul>
+                            <li>The authenticated student who owns the profile.</li>
+                            <li>Verified corporate recruiters who have received an official application from the student for an active job opening.</li>
+                            <li>Authorized placement administrators managing college recruitment drives.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h5 class="fw-bold text-dark mb-2">3. Corporate Verification & Compliance</h5>
+                        <p>
+                            To prevent fraudulent job offers, recruiter registrations require official institutional approval. Company details, including tax identifiers and official business emails, are subject to placement officer validation before job postings can go live.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h5 class="fw-bold text-dark mb-2">4. Application History & Audit Logs</h5>
+                        <p>
+                            Every status change (from Applied to Selected or Rejected) is timestamped and recorded in immutable audit tables to ensure full transparency and dispute resolution during placement seasons.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h5 class="fw-bold text-dark mb-2">5. Data Security Standards</h5>
+                        <p>
+                            All passwords are cryptographic hashes generated via ASP.NET Core Identity. Forms are protected against cross-site request forgery (Antiforgery tokens), and all production endpoints enforce HTTPS transport layer security.
+                        </p>
+                    </section>
+                </div>
+
+                <div class="mt-5 pt-3 border-top">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary rounded-pill px-4">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
